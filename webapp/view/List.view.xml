@@ -1,0 +1,50 @@
+<mvc:View
+    controllerName="tiles.controller.List"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        title="{i18n>tileList}"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+    >
+        <headerContent>
+            <Button
+                text="Open Form"
+                press="onOpenDialog"
+            />
+            <core:Fragment
+                fragmentName="tiles.view.fragments.ButtonTheme"
+                type="XML"
+            />
+        </headerContent>
+        <content>
+            <VBox class="sapUiContentPadding sapUiSmallMargin">
+                <OverflowToolbar>
+                    <SearchField
+                        liveChange="onSearch"
+                        width="100%"
+                    />
+                </OverflowToolbar>
+                <List
+                    id="listProducts"
+                    headerText="Productos"
+                    items="{path: 'mProducts>/ProductCollection'}"
+                    mode="SingleSelectMaster"
+                    itemPress="onPressProduct"
+                    growing="true"
+                    growingThreshold="10"
+                    growingScrollToLoad="false"
+                >
+                    <StandardListItem
+                        title="{mProducts>Name}"
+                        description="{mProducts>Description}"
+                        icon="{mProducts>ProductPicUrl}"
+                        type="Active"
+                    />
+                </List>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

@@ -14,6 +14,16 @@
       "id": "@sap/generator-fiori:basic",
       "version": "1.17.6",
       "toolsId": "9f447703-b96c-4bb5-ba34-90d4ea50184c"
+    },
+    "dataSources": {
+      "products-srv": {
+        "uri": "localservice/db.data.json",
+        "type": "JSON"
+      },
+      "tiles-srv": {
+        "uri": "localservice/tiles.config.json",
+        "type": "JSON"
+      }
     }
   },
   "sap.ui": {
@@ -33,7 +43,7 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.136.1",
       "libs": {
@@ -51,6 +61,14 @@
         "settings": {
           "bundleName": "tiles.i18n.i18n"
         }
+      },
+      "mProducts": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "products-srv"
+      },
+      "mTiles": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "tiles-srv"
       }
     },
     "resources": {
@@ -70,7 +88,10 @@
         "viewType": "XML",
         "path": "tiles.view",
         "async": true,
-        "viewPath": "tiles.view"
+        "viewPath": "tiles.view",
+        "bypassed": {
+          "target": "TargetNotFound"
+        }
       },
       "routes": [
         {
@@ -79,12 +100,49 @@
           "target": [
             "TargetMain"
           ]
+        },
+        {
+          "name": "viewList",
+          "pattern": "viewList",
+          "target": [
+            "TargetList"
+          ]
+        },
+        {
+          "name": "viewForm",
+          "pattern": "viewForm",
+          "target": [
+            "TargetForm"
+          ]
+        },
+        {
+          "name": "viewDetail",
+          "pattern": "viewDetail/{productId}",
+          "target": [
+            "TargetDetail"
+          ]
         }
       ],
       "targets": {
         "TargetMain": {
           "id": "Main",
           "name": "Main"
+        },
+        "TargetList": {
+          "id": "List",
+          "name": "List"
+        },
+        "TargetForm": {
+          "id": "Form",
+          "name": "Form"
+        },
+        "TargetDetail": {
+          "id": "Detail",
+          "name": "Detail"
+        },
+        "TargetNotFound": {
+          "id": "NotFound",
+          "name": "NotFound"
         }
       }
     },

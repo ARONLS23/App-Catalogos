@@ -1,0 +1,100 @@
+<mvc:View
+    controllerName="tiles.controller.Detail"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    height="100%"
+    busyIndicatorDelay="0"
+    xmlns:uxap="sap.uxap"
+    xmlns:layout="sap.ui.layout"
+>
+    <Page
+        title="{i18n>viewDetail}"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+    >
+        <uxap:ObjectPageLayout>
+            <uxap:headerTitle>
+                <uxap:ObjectPageDynamicHeaderTitle>
+                    <uxap:snappedHeading>
+                        <FlexBox
+                            fitContainer="true"
+                            alignItems="Center"
+                        >
+                            <Avatar
+                                src="{mProducts>ProductPicUrl}"
+                                class="sapUiTinyMarginEnd"
+                            />
+                            <Title text="{mProducts>ProductId}" />
+                        </FlexBox>
+                    </uxap:snappedHeading>
+
+                    <uxap:snappedContent>
+                        <Title
+                            text="{mProducts>Name} - {mProducts>Category}"
+                            wrapping="true"
+                        />
+                    </uxap:snappedContent>
+
+                    <uxap:expandedContent>
+                        <Title
+                            text="{mProducts>ProductId} - {mProducts>Name}"
+                            wrapping="true"
+                        />
+                    </uxap:expandedContent>
+                </uxap:ObjectPageDynamicHeaderTitle>
+            </uxap:headerTitle>
+
+            <uxap:headerContent>
+                <layout:VerticalLayout>
+                    <Avatar
+                        src="{mProducts>ProductPicUrl}"
+                        class="sapUiTinyMarginEnd"
+                    />
+                </layout:VerticalLayout>
+                <layout:VerticalLayout>
+                    <Label text="{mProducts>Category}" />
+                    <Label text="{mProducts>MainCategory}" />
+                    <Label text="{mProducts>SupplierName}" />
+                </layout:VerticalLayout>
+            </uxap:headerContent>
+
+            <uxap:sections>
+                <uxap:ObjectPageSection>
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection title="Descripción">
+                            <uxap:blocks>
+                                <Text text="{mProducts>Description}" />
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection title="Peso">
+                            <uxap:blocks>
+                                <Text
+                                    text="{mProducts>WeightMeasure} {mProducts>WeightUnit}"
+                                />
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection title="Precio">
+                            <uxap:blocks>
+                                <Text
+                                    text="{mProducts>Price} {mProducts>CurrencyCode}"
+                                />
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection title="Fecha de Venta">
+                            <uxap:blocks>
+                                <Text text="{mProducts>DateOfSale}" />
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+            </uxap:sections>
+        </uxap:ObjectPageLayout>
+    </Page>
+</mvc:View>
